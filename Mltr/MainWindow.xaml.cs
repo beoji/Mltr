@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mltr.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,15 @@ namespace Mltr
     /// </summary>
     public partial class MainWindow : Window
     {
+        ProductService service = new ProductService("light_obce.xml");
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonAddName_Click(object sender, RoutedEventArgs e)
+        {
+            service.ConvertToXLS(lstNames);
         }
     }
 }

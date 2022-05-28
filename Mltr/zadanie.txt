@@ -1,0 +1,13 @@
+proszê napisaæ aplikacjê która na podstawie xml z za³¹cznika (ze wzglêdu na ograniczenia pracuj.pl zmieni³em mu typ na txt) i stworzy plik excelowy -  najlepiej korzystaj¹c z otwartej biblioteki:
+https://www.nuget.org/packages/ClosedXML/
+
+plik niech posiada dwa arkusze w jednym: id,nazwa, dlugi_opis, waga, kod, ean,status, typ, cena_zewnetrzna_hurt, cena_zewnetrzna, vat,
+ ilosc_wariantow, ilosc_zdjec (ze <zdjecia>), mar¿a(bazuj¹c na cena_zewnetrzna_hurt, cena_zewnetrzna)
+a w drugim zdjecia z kolumn¹ id która bedzie odpowiadaæ id z arkusza pierwszego
+
+w arkuszu pierwszym 
+niech wiersze które maj¹ mniej niz 2 zdjêcia bêd¹ pokolorowane na czerwono
+niech wiersze które maj¹ mar¿a < 20% niech bêda pokolorowane na pomarañczowo
+
+dodatkowo opcjonalnie niech bêdzie to aplikacja okienkowa która bêdzie wyœwietlaæ powsta³e arkusze (czyli dwa widoki) 
+i byæ mo¿e pozwalaæ bêdzie na ich edycjê i ponowny zapis. Pozwoli to oszacowaæ znajomoœæ WPF najlepiej z mvvm.
