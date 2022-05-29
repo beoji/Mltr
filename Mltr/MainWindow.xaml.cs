@@ -1,4 +1,5 @@
-﻿using Mltr.Services;
+﻿using Mltr.Serializers;
+using Mltr.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,22 +15,29 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Mltr
-{
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
-        ProductService service = new ProductService("light_obce.xml");
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+namespace Mltr;
 
-        private void ButtonAddName_Click(object sender, RoutedEventArgs e)
+public partial class MainWindow : Window
+{
+    ProductService service;
+
+    public MainWindow()
+    {
+        var fileName = "light_obce.xml";
+        var serializer = new XmlProductSerializer();
+
+        service = new ProductService(fileName, serializer);
+
+        InitializeComponent();
+    }
+
+    private void ButtonAddName_Click(object sender, RoutedEventArgs e)
+    {
+        var l = service.ConvertToList();
+
+        foreach(var item in l)
         {
-            service.ConvertToXLS(lstNames);
+            lstNames.Items.Add(item);
         }
     }
 }
