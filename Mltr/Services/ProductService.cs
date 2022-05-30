@@ -20,6 +20,7 @@ internal class ProductService
         _filename = filename;
         _serializer = serializer;
     }
+
     public List<Product> ConvertToList()
     {
         string workingDirectory = Environment.CurrentDirectory;

@@ -1,4 +1,6 @@
-﻿using Mltr.Serializers;
+﻿using ClosedXML.Excel;
+using Mltr.Domain;
+using Mltr.Serializers;
 using Mltr.Services;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,7 @@ public partial class MainWindow : Window
 
     public MainWindow()
     {
-        var fileName = "light_obce.xml";
+        var fileName = "data.xml";
         var serializer = new XmlProductSerializer();
 
         service = new ProductService(fileName, serializer);
@@ -35,9 +37,17 @@ public partial class MainWindow : Window
     {
         var l = service.ConvertToList();
 
-        foreach(var item in l)
+        using (IXLWorkbook workbook = new XLWorkbook())
         {
-            lstNames.Items.Add(item);
+            workbook.AddWorksheet("products").FirstCell().InsertTable<Product>(l, false);
+            var i = workbook.AddWorksheet("images").FirstCell();
+            foreach (Product p in l)
+            {
+                i.InsertTable<Domain.Image>(p.Images, false);
+                lstNames.Items.Add(p);
+                dtGrid.Items.Add(p);
+            }
+            workbook.SaveAs("plik.xlsx");
         }
     }
 }

@@ -21,8 +21,8 @@
         <Label Grid.Row="0" Grid.Column="0">Names</Label>
         <ListBox Grid.Row="1" Grid.Column="0" x:Name="lstNames" />
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
-            <TextBox x:Name="txtName" />
             <Button x:Name="btnAdd" Margin="0,5,0,0" Click="ButtonAddName_Click">Add Name</Button>
+            <DataGrid x:Name="dtGrid" Height="100" d:ItemsSource="{d:SampleData ItemCount=5}"/>
 
         </StackPanel>
     </Grid>
